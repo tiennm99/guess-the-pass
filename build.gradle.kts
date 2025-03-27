@@ -25,3 +25,9 @@ tasks.test {
 application {
     mainClass.set("com.miti99.Main")
 }
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = application.mainClass.get()
+    }
+}
