@@ -31,6 +31,7 @@ tasks.jar {
         attributes["Main-Class"] = application.mainClass.get()
     }
     archiveBaseName.set(project.name)
+    archiveVersion.set("")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }
