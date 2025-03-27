@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY . .
 
-RUN gradle build --no-daemon
+RUN gradle clean build -x check -x test
 
 FROM amazoncorretto:21-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/build/libs/guess-the-pass.jar /app/app.jar
+COPY --from=builder /app/build/libs/ /app
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["sh", "-c", "java $JAVA_OPTS -jar $(ls -1 *jar | grep -v plain)"]
