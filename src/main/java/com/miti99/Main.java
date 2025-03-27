@@ -2,11 +2,11 @@ package com.miti99;
 
 import com.miti99.guessthepass.bot.GuessThePassBot;
 import com.miti99.guessthepass.env.GuestThePassEnv;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.longpolling.TelegramBotsLongPollingApplication;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-@Log4j2
+@Slf4j
 public class Main {
 
   public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class Main {
       var botsApplication = new TelegramBotsLongPollingApplication();
       botsApplication.registerBot(GuestThePassEnv.BOT_TOKEN, new GuessThePassBot());
     } catch (TelegramApiException e) {
-      log.error(e);
+      log.error("botsApplication start failed", e);
     }
   }
 }

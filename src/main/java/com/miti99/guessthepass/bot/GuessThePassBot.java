@@ -1,13 +1,13 @@
 package com.miti99.guessthepass.bot;
 
 import com.miti99.guessthepass.client.GuestThePassClient;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.longpolling.util.LongPollingSingleThreadUpdateConsumer;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-@Log4j2
+@Slf4j
 public class GuessThePassBot implements LongPollingSingleThreadUpdateConsumer {
   @Override
   public void consume(Update update) {
@@ -24,7 +24,7 @@ public class GuessThePassBot implements LongPollingSingleThreadUpdateConsumer {
       try {
         GuestThePassClient.INSTANCE.execute(sendMessage);
       } catch (TelegramApiException e) {
-        log.error(e);
+        log.error("consume error", e);
       }
     }
   }
