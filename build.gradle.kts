@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("idea")
     id("application")
 }
 
@@ -34,6 +35,13 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }
 
 application {
